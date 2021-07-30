@@ -6,17 +6,39 @@ function ProfileBox() {
   const [number, setNumber] = useState(0);
 
   function decrementCount() {
-    setNumber(number - 1);
+    if (number < 1) {
+      alert("Nothing to see, press next");
+    } else {
+      setNumber(number - 1);
+    }
   }
 
   function incrementCount() {
     setNumber(number + 1);
   }
   return (
-    <div>
-      <h1>{JSON.stringify(data[number])}</h1>
-      <button onClick={() => decrementCount()}>Back</button>
-      <button onClick={() => incrementCount()}>Next</button>
+    <div className="container">
+      <div className="idDiv">
+        {data[number].id}/{data.length}
+      </div>
+      <div className="nameDiv">
+        {data[number].name.first} {data[number].name.last}
+      </div>
+      <div className="cityCountryDiv">
+        {data[number].city}, {data[number].country}
+      </div>
+      <div className="titleDiv">Job Title: {data[number].title}</div>
+      <div className="empDiv">Employer: {data[number].employer}</div>
+      <div className="favMovieDiv">{data[number].favoriteMovies}</div>
+
+      <div className="buttons">
+        <button id="backButton" onClick={() => decrementCount()}>
+          &#x2190; Back
+        </button>
+        <button id="nextButton" onClick={() => incrementCount()}>
+          Next &#x2192;
+        </button>
+      </div>
     </div>
   ); //ToDo: need to make buttons not appear if id is 0, incrementButton if id is 25
 }
